@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import "./Giphy.css"
 
 class Giphy extends Component{
     render(){
         const {imgsrc} = this.props;
         return (
-            <div style={{float:"left"}}>
-                <img src={imgsrc.url}/>
+            <div className="Giphy">
+                <img className="Giphy-img" src={imgsrc.url}/>
             </div>
         )
     }
