@@ -1,41 +1,54 @@
 import React, { Component } from 'react';
-import Search from "./Search";
+import Category from "./Category";
+import {Switch,Route,Render} from "react-router-dom";
 import './App.css';
-import axios from "axios";
-import Giphy from "./Giphy";
+import GiphyList from './GiphyList';
+import MyNavbar from "./Navbar";
+import Container from "react-bootstrap/Container";
 
 class App extends Component {
-  constructor(props){
-    super(props); 
-    this.state = {gifSearch:[],val:'',gifTrending:[]};
-    this.handleSearch = this.handleSearch.bind(this);
-  }
-  async componentDidMount() {
-    console.log("rendered")
-    const x = await axios.get(`https://api.giphy.com/v1/gifs/trending?api_key=bwhrD5ikLdXQQTDsFx547Q4Q3DsNwoN1&limit=6&rating=G`)
-    this.setState({gifTrending:[...this.state.gifTrending,...(x.data.data)]});
-  } 
-  handleSearch(val){
-    this.setState({val:val},this.getGif);
-  }
-  async getGif(){
-    const x = await axios.get(`http://api.giphy.com/v1/gifs/search?q=${this.state.val}&api_key=bwhrD5ikLdXQQTDsFx547Q4Q3DsNwoN1&limit=6`)
-    this.setState({gifSearch:[...this.state.gifSearch,...(x.data.data)]})
-  }
-  render() {
-    return (
-      <div className="App">
-        <Search handleSearch={this.handleSearch}/>
-        <h1>Trending GIFS</h1>
-        <div className="giphy-container-trending">
-        { this.state.gifTrending.length === 0 ? <span>&nbsp;&nbsp;</span>:this.state.gifTrending.map((e)=><Giphy imgsrc={e.images.fixed_height}/>)}
-        </div>
-        <div className="giphy-container-search">
-          { this.state.gifSearch.length === 0 ? <span>&nbsp;&nbsp;</span>:this.state.gifSearch.map((e)=><Giphy imgsrc={e.images.fixed_height}/>)}
-        </div>
-      </div>
-    );
-  }
+ render(){
+   return (
+    <div>
+        <MyNavbar />
+        <Route 
+              exact path="/"      
+              render={() => <GiphyList/>} />
+        <Route path="/:name"
+              render={routeProps => <Category {...routeProps} />} />
+        {/* <Switch>
+            <Route 
+              exact path="/"      
+              render={() => <GiphyList/>} />
+            <Route 
+              exact path="/Entertainment"  
+              render={() => <h1>This is Entertainment Category</h1>} />
+            <Route 
+              exact path="/Sports"
+              render={() => <h1>This is Sports Category</h1>} />
+            <Route 
+              exact path="/Stickers"
+              render={() => <h1>This is Stickers Category</h1>} />
+            <Route 
+              exact path="/Liked"
+              render={() => <h1>This is Liked Category</h1>} />
+            <Route 
+              exact path="/Saved"
+              render={() => <h1>This is Saved Category</h1>} />  
+        </Switch>  */}
+    </div>
+   )
+ } 
 }
 
 export default App;
+
+// Categories
+// Random
+// Liked
+// Saved
+// Stickers
+// Trending
+// Yesterday
+
+{/* */}
