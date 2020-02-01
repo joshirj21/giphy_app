@@ -1,0 +1,8 @@
+.primary-heading{
+    text-align: center;
+}
+.giphy-container-search{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}

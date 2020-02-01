@@ -1,9 +1,8 @@
 .Giphy{
-    float: left;
-}
-.Giphy-img{
-    height: 200px;
-    width: 200px;
-    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
     cursor: pointer;
+    position: relative;
 }

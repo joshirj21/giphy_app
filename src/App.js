@@ -11,31 +11,13 @@ class App extends Component {
    return (
     <div>
         <MyNavbar />
+        <Switch>
         <Route 
               exact path="/"      
-              render={() => <GiphyList/>} />
-        <Route path="/:name"
+              render={() => <GiphyList />} />      
+        <Route exact path="/:name"
               render={routeProps => <Category {...routeProps} />} />
-        {/* <Switch>
-            <Route 
-              exact path="/"      
-              render={() => <GiphyList/>} />
-            <Route 
-              exact path="/Entertainment"  
-              render={() => <h1>This is Entertainment Category</h1>} />
-            <Route 
-              exact path="/Sports"
-              render={() => <h1>This is Sports Category</h1>} />
-            <Route 
-              exact path="/Stickers"
-              render={() => <h1>This is Stickers Category</h1>} />
-            <Route 
-              exact path="/Liked"
-              render={() => <h1>This is Liked Category</h1>} />
-            <Route 
-              exact path="/Saved"
-              render={() => <h1>This is Saved Category</h1>} />  
-        </Switch>  */}
+        </Switch>
     </div>
    )
  } 
